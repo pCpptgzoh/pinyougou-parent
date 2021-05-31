@@ -283,5 +283,6 @@
 		<module>pinyougou-shop-web-1</module>
 		<module>pinyougou-content-interface-1</module>
 		<module>pinyougou-content-service-1</module>
+		<module>pinyougou-protal-web</module>
 	</modules>
 </project>

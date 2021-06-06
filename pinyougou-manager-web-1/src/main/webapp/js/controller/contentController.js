@@ -1,6 +1,6 @@
  //控制层 
-app.controller('contentController' ,function($scope,$controller   ,contentService,
-		uploadService,contentCategoryService){	
+app.controller('contentController' ,function($scope,$controller   ,
+		contentService,uploadService,contentCategoryService){	
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -79,35 +79,32 @@ app.controller('contentController' ,function($scope,$controller   ,contentServic
 	}
 	
 	
-	//加载广告分类列表
-	$scope.findContentCategoryList=function(){
-		contentCategoryService.findAll().success(
-			function(response){
-				$scope.contentCategoryList=response;				
-			}
-		);
-	}
-	
-	
-	//上传广告图
+	// 上传广告图片
 	$scope.uploadFile=function(){
-		uploadService.uploadFile().success(
-			function(response){
-				if(response.success){
-					$scope.entity.pic=response.message;					
-				}else{
-					alert("上传失败！");
-				}
+		uploadService.uploadFile().success(function(response){
+			if(response.success){
+				$scope.entity.pic=response.message;
+				console.log($scope.entity.pic);
+			}else{
+				alert(response.message);
 			}
-		).error(
-			function(){
-				alert("上传出错！");
-			}
-		);		
+		}).error(function(){
+			alert("上传出错");
+		});
 	}
-
+	
+	
+	
+	// 加载广告分类列表
+	$scope.findContentCategoryList=function(){
+		contentCategoryService.findAll().success(function(response){
+			$scope.contentCategoryList=response;
+			// console.log($scope.contentCategoryList);
+		});
+	}
+	
 	
 	$scope.status=["无效","有效"];
 	
-    
+	
 });	
